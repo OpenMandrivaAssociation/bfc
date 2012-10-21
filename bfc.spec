@@ -1,4 +1,4 @@
-%define git	20121015
+%define git	20121021
 
 Name:		bfc
 Version:	0.1
@@ -6,6 +6,7 @@ Release:	%{?git:0.git%{git}.}1
 Summary:	An alternative ABF client
 Group:		Development/Other
 License:	GPLv3+
+URL:		https://github.com/mikhirev/bfc
 Source0:	%{name}-%{git}.tar.xz
 BuildArch:	noarch
 
