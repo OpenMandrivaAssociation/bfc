@@ -1,4 +1,4 @@
-%define git	20121021
+%define git	20121028
 
 Name:		bfc
 Version:	0.1
