@@ -1,4 +1,4 @@
-%define git	20121028
+%define git	20121105
 
 Name:		bfc
 Version:	0.1
@@ -12,8 +12,8 @@ BuildArch:	noarch
 
 %description
 Build Farm Client aka bfc is an alternative command line client for ABF
-(Automated Build Farm). It is being under development and not feature-rich
-yet.
+(Automated Build Farm) and %{distribution} maintainers' helper.
+It is being under development and not feature rich yet.
 
 %prep
 %setup -qn %{name}-%{git}
