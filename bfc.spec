@@ -2,12 +2,13 @@
 
 Name:		bfc
 Version:	0.1
-Release:	%{?git:0.git%{git}.}1
+Release:	%{?git:0.git%{git}.}2
 Summary:	An alternative ABF client
 Group:		Development/Other
 License:	GPLv3+
 URL:		https://github.com/mikhirev/bfc
 Source0:	%{name}-%{git}.tar.xz
+Source1:        bfc.conf
 BuildArch:	noarch
 
 %description
@@ -24,8 +25,10 @@ pod2man bfc > bfc.1
 %install
 install -D -m 755 bfc %{buildroot}%{_bindir}/bfc
 install -D -m 644 bfc.1 %{buildroot}%{_mandir}/man1/bfc.1
+install -D -m 644 %{SOURCE1} %{buildroot}%{_sysconfdir}/bfc.conf
 
 %files
 %doc README
 %{_bindir}/bfc
 %{_mandir}/man1/bfc.1*
+%config(noreplace) %{_sysconfdir}/bfc.conf
