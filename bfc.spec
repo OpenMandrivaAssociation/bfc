@@ -1,14 +1,18 @@
-%define git	20121105
+#define git	20121105
 
 Name:		bfc
 Version:	0.1
-Release:	%{?git:0.git%{git}.}2
+Release:	%{?git:0.git%{git}.}1
 Summary:	An alternative ABF client
 Group:		Development/Other
 License:	GPLv3+
 URL:		https://github.com/mikhirev/bfc
+%if 0%{?git}
 Source0:	%{name}-%{git}.tar.xz
-Source1:        bfc.conf
+%else
+Source0:	%{name}-%{version}.tar.xz
+%endif
+Source1:	bfc.conf
 BuildArch:	noarch
 
 %description
@@ -17,7 +21,7 @@ Build Farm Client aka bfc is an alternative command line client for ABF
 It is being under development and not feature rich yet.
 
 %prep
-%setup -qn %{name}-%{git}
+%setup -q %{?git: -n %{name}-%{git}}
 
 %build
 pod2man bfc > bfc.1
