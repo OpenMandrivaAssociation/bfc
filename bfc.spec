@@ -1,8 +1,8 @@
 #define git	20121105
 
 Name:		bfc
-Version:	0.1
-Release:	%{?git:0.git%{git}.}2
+Version:	0.2
+Release:	%{?git:0.git%{git}.}1
 Summary:	An alternative ABF client
 Group:		Development/Other
 License:	GPLv3+
@@ -13,7 +13,6 @@ Source0:	%{name}-%{git}.tar.xz
 Source0:	%{name}-%{version}.tar.xz
 %endif
 Source1:	bfc.conf
-Patch0:		bfc-0.1-git20121122.patch
 BuildArch:	noarch
 
 %description
@@ -23,7 +22,6 @@ It is being under development and not feature rich yet.
 
 %prep
 %setup -q %{?git: -n %{name}-%{git}}
-%patch0 -p1
 
 %build
 pod2man bfc > bfc.1
