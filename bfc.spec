@@ -2,7 +2,7 @@
 
 Name:		bfc
 Version:	0.2
-Release:	%{?git:0.git%{git}.}1
+Release:	%{?git:0.git%{git}.}2
 Summary:	An alternative ABF client
 Group:		Development/Other
 License:	GPLv3+
@@ -14,6 +14,7 @@ Source0:	%{name}-%{version}.tar.xz
 %endif
 Source1:	bfc.conf
 BuildArch:	noarch
+Requires:	perl(LWP::Protocol::https)
 
 %description
 Build Farm Client aka bfc is an alternative command line client for ABF
