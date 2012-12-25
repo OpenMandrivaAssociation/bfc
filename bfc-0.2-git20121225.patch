@@ -1,0 +1,51 @@
+diff --git a/bfc b/bfc
+index 4cc4255..e9a7910 100755
+--- a/bfc
++++ b/bfc
+@@ -769,6 +769,10 @@ sub download {
+ sub fs_upload {
+     my $baseurl = fs_baseurl();
+     my @results;
++    my $ua = LWP::UserAgent->new;
++    my ($protocol, $host, $port) = $baseurl =~ m|^(\w+)://([\w.-]+)(?::(\d+))?|;
++    $port = $protocol eq 'https' ? 443 : 80 unless $port;
++    $ua->credentials("$host:$port", 'Application', fs_username(), fs_password());
+     foreach (@_) {
+         my ($filename) = m{([^/]+)$};
+         my $url = "$baseurl/api/v1/upload";
+@@ -777,7 +781,6 @@ sub fs_upload {
+                 Content_Type    => 'form-data',
+                 Content         => [ name               => $filename,
+                                     'file_store[file]'  => [$_] ];
+-        my $ua = LWP::UserAgent->new;
+         print "Uploading $filename\n";
+         my $result = $ua->request($request);
+         if ($result->is_error()) {
+@@ -793,10 +796,6 @@ sub fs_upload {
+ 
+ sub fs_baseurl {
+     my $url = $config->val('file-store', 'baseurl');
+-    my $username = fs_username();
+-    my $password = fs_password();
+-
+-    $url =~ s|(^\w+://)|$1${username}:${password}@|;
+     $url =~ s|/$||;
+     return $url;
+ }
+@@ -900,6 +899,16 @@ Status: @<<<<<<<<<<<<<<<<< Commit:     @<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+ 
+ __END__
+ 
++=head1 CONFIGURATION FILES
++
++Global configuration is stored in I</etc/bfc.conf>. See comments in that 
++for further information. User settings in I<$HOME/.bfc.conf> override glo
++settings.
++
++Authentication data for AFB and ABF File Store can be taken from
++I<$HOME/.netrc> file. See L<netrc(5)> man page. Note that there must be
++separate records for ABF itself and File Store.
++
+ =head1 COPYRIGHT
+ 
+ Copyright (C) 2012, Dmitry Mikhirev

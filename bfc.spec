@@ -2,7 +2,7 @@
 
 Name:		bfc
 Version:	0.2
-Release:	%{?git:0.git%{git}.}2
+Release:	%{?git:0.git%{git}.}3
 Summary:	An alternative ABF client
 Group:		Development/Other
 License:	GPLv3+
@@ -13,6 +13,7 @@ Source0:	%{name}-%{git}.tar.xz
 Source0:	%{name}-%{version}.tar.xz
 %endif
 Source1:	bfc.conf
+Patch0:		bfc-0.2-git20121225.patch
 BuildArch:	noarch
 Requires:	perl(LWP::Protocol::https)
 
@@ -23,6 +24,7 @@ It is being under development and not feature rich yet.
 
 %prep
 %setup -q %{?git: -n %{name}-%{git}}
+%patch0 -p1
 
 %build
 pod2man bfc > bfc.1
