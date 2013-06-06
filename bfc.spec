@@ -2,7 +2,7 @@
 
 Name:		bfc
 Version:	0.2
-Release:	%{?git:0.git%{git}.}4
+Release:	%{?git:0.git%{git}.}5
 Summary:	An alternative ABF client
 Group:		Development/Other
 License:	GPLv3+
