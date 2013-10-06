@@ -2,7 +2,7 @@
 
 Name:		bfc
 Version:	0.2
-Release:	%{?git:0.git%{git}.}6
+Release:	%{?git:0.git%{git}.}7
 Summary:	An alternative ABF client
 Group:		Development/Other
 License:	GPLv3+
@@ -40,4 +40,4 @@ install -D -m 644 %{SOURCE1} %{buildroot}%{_sysconfdir}/bfc.conf
 %doc README
 %{_bindir}/bfc
 %{_mandir}/man1/bfc.1*
-%config(noreplace) %{_sysconfdir}/bfc.conf
+%config %{_sysconfdir}/bfc.conf
